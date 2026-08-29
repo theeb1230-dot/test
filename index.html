@@ -3,139 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مسلسل Lucky - الحلقة 1 | مشغل بدون إعلانات</title>
+    <title>مشغل الفيديوهات</title>
     <style>
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
             padding: 20px;
-        }
-        .header {
             text-align: center;
-            margin-bottom: 20px;
         }
-        .header h1 {
-            font-size: 1.5rem;
-            color: #38bdf8;
-            margin-bottom: 8px;
-        }
+
         .player-container {
-            width: 100%;
-            max-width: 960px;
-            background: #1e293b;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
-        .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* أبعاد 16:9 */
+            width: 100%;
+            max-width: 900px;
             height: 0;
-            background: #000;
+            padding-bottom: 56.25%; /* نسبة 16:9 */
+            margin: 0 auto 20px auto;
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
         }
-        .video-wrapper iframe {
+
+        .player-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: 0;
+            border: none;
         }
+
         .server-list {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 15px;
-            background: #0f172a;
             justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
         }
+
         .server-btn {
-            background: #334155;
+            background-color: #1e1e1e;
             color: #fff;
-            border: none;
+            border: 1px solid #333;
             padding: 10px 18px;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
             transition: all 0.2s ease;
+            font-size: 14px;
         }
-        .server-btn:hover {
-            background: #475569;
-        }
-        .server-btn.active {
-            background: #0284c7;
-            box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
-        }
-        .info-bar {
-            padding: 15px;
-            font-size: 0.9rem;
-            color: #94a3b8;
-            text-align: center;
-            border-top: 1px solid #334155;
-        }
-        .ad-status {
-            color: #22c55e;
-            font-weight: bold;
+
+        .server-btn:hover, .server-btn.active {
+            background-color: #e50914;
+            border-color: #e50914;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>مسلسل Lucky - الحلقة 1 (مترجمة)</h1>
-        <p>مشغل مخصص مع <span class="ad-status">🛡️ مانع الإعلانات المدمج نشط</span></p>
+    <h2>اختر السيرفر للمشاهدة</h2>
+
+    <!-- حاوية المشغل -->
+    <div class="player-container" id="playerWrapper">
+        <!-- يتم إنشاء الـ iframe هنا تلقائياً -->
     </div>
 
-    <div class="player-container">
-        <!-- مشغل الفيديو الرئيسي -->
-        <div class="video-wrapper">
-            <iframe id="main-player" src="https://mp4.okhd.site/embed-vm6in0p12qt9.html" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
-        </div>
-
-        <!-- أزرار التغيير بين السيرفرات -->
-        <div class="server-list">
-            <button class="server-btn active" onclick="changeServer(this, 'https://mp4.okhd.site/embed-vm6in0p12qt9.html')">Mp4</button>
-            <button class="server-btn" onclick="changeServer(this, 'https://rty1.film77.xyz/embed-rdpchva9ubqp.html')">Rty1</button>
-            <button class="server-btn" onclick="changeServer(this, 'https://vidoba.org/embed-ny3gm3g26e2k.html')">Vidoba</button>
-            <button class="server-btn" onclick="changeServer(this, 'https://mp4plus.org/embed-lp9u5c9v8ku9.html')">Mp4plus</button>
-            <button class="server-btn" onclick="changeServer(this, 'https://anafast.org/embed-mcxv0v42jxmv.html')">Anafast</button>
-            <button class="server-btn" onclick="changeServer(this, 'https://vidspeed.org/embed-useub99jyope.html')">Vidspeed</button>
-            <button class="server-btn" onclick="changeServer(this, 'https://abstream.to/e/va6zjkyufi9g')">Abstream</button>
-            <button class="server-btn" onclick="changeServer(this, 'https://mixdrop.top/e/jd981z4mh788k44')">Mixdrop</button>
-            <button class="server-btn" onclick="changeServer(this, 'https://dsvplay.com/e/p8grbth4p65w')">Dsvplay</button>
-            <button class="server-btn" onclick="changeServer(this, 'https://voe.sx/e/6swgf1fzxy6h')">Voe</button>
-        </div>
-
-        <div class="info-bar">
-            💡 اضغط على اسم أي سيرفر أعلاه للتحويل إليه مباشرة بدون إعلانات منبثقة.
-        </div>
+    <!-- أزرار السيرفرات الخاصة بك -->
+    <div class="server-list">
+        <button class="server-btn active" onclick="changeServer(this, 'https://mp4.okhd.site/embed-vm6in0p12qt9.html')">Mp4</button>
+        <button class="server-btn" onclick="changeServer(this, 'https://rty1.film77.xyz/embed-rdpchva9ubqp.html')">Rty1</button>
+        <button class="server-btn" onclick="changeServer(this, 'https://vidoba.org/embed-ny3gm3g26e2k.html')">Vidoba</button>
+        <button class="server-btn" onclick="changeServer(this, 'https://mp4plus.org/embed-lp9u5c9v8ku9.html')">Mp4plus</button>
+        <button class="server-btn" onclick="changeServer(this, 'https://anafast.org/embed-mcxv0v42jxmv.html')">Anafast</button>
+        <button class="server-btn" onclick="changeServer(this, 'https://vidspeed.org/embed-useub99jyope.html')">Vidspeed</button>
+        <button class="server-btn" onclick="changeServer(this, 'https://abstream.to/e/va6zjkyufi9g')">Abstream</button>
+        <button class="server-btn" onclick="changeServer(this, 'https://mixdrop.top/e/jd981z4mh788k44')">Mixdrop</button>
+        <button class="server-btn" onclick="changeServer(this, 'https://dsvplay.com/e/p8grbth4p65w')">Dsvplay</button>
+        <button class="server-btn" onclick="changeServer(this, 'https://voe.sx/e/6swgf1fzxy6h')">Voe</button>
     </div>
 
     <script>
-        // دالة التبديل بين السيرفرات
-        function changeServer(btnElement, serverUrl) {
-            // 1. تغيير رابط السيرفر داخل المشغل
-            document.getElementById('main-player').src = serverUrl;
+        function changeServer(btnElement, url) {
+            const wrapper = document.getElementById('playerWrapper');
 
-            // 2. تحديث الشكل البصري للأزرار (تمييز الزر النشط)
+            // 1. تفريغ الحاوية لإجبار السيرفر الخارجي على البدء من جديد
+            wrapper.innerHTML = '';
+
+            // 2. إنشاء عنصر iframe جديد بالكامل
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.setAttribute('allowfullscreen', 'true');
+            iframe.setAttribute('webkitallowfullscreen', 'true');
+            iframe.setAttribute('mozallowfullscreen', 'true');
+            iframe.setAttribute('scrolling', 'no');
+            iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
+            
+            // 3. إضافة الـ iframe للحاوية
+            wrapper.appendChild(iframe);
+
+            // 4. تحديث الشكل الفعال للأزرار
             const buttons = document.querySelectorAll('.server-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
         }
 
-        // حظر فتح النوافذ المنبثقة الإعلانية تلقائياً
-        window.open = function() {
-            return null;
+        // تشغيل السيرفر الأول (Mp4) تلقائياً عند فتح الصفحة
+        window.onload = function() {
+            const firstBtn = document.querySelector('.server-btn');
+            if (firstBtn) {
+                changeServer(firstBtn, 'https://mp4.okhd.site/embed-vm6in0p12qt9.html');
+            }
         };
     </script>
 </body>
